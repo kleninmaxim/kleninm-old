@@ -27,7 +27,7 @@
                                 style="color: #D9F5DD;">(</span><span style="color: #FFCB8B;">Request</span><span
                                 style="color: #BFC7D5;"> </span><span style="color: #BEC5D4;">$request</span><span
                                 style="color: #BFC7D5;">, </span><span style="color: #FFCB8B;">Record</span><span
-                                style="color: #BFC7D5;">&nbsp;</span><span
+                                style="color: #BFC7D5;">&nbsp;</span><span>
                                 style="color: #BEC5D4;">$record</span><span style="color: #D9F5DD;">)</span></div><div
                             class="line"><span style="color: #BFC7D5;">{</span></div><div class="line"><span
                                 style="color: #BFC7D5;">    </span><span
