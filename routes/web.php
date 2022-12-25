@@ -17,6 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/portfolio', function () {
+    return view('portfolio');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/example', function () {
+    return view('portfolio.example-one');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

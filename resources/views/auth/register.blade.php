@@ -55,6 +55,12 @@
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
+
+            <div class="flex items-center justify-start mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ (route(Route::current()->getName()) == url()->previous()) ? url('/') : url()->previous() }}">
+                    {{ __('Back') }}
+                </a>
+            </div>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
