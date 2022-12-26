@@ -37,4 +37,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/portfolio', function () {
+        return view('dashboard.portfolio');
+    })->name('portfolio');
 });
