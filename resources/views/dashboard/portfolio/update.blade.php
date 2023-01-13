@@ -1,4 +1,8 @@
 <x-app-layout>
+    @push('styles')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    @endpush
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Portfolio') }}
@@ -18,19 +22,24 @@
                     </div>
 
                     <div class="mt-5 md:col-span-2 md:mt-0">
-                        <form action="#" method="POST">2
+                        <form action="{{ route('portfolio.create') }}" method="POST" id="createPostForm">
+                            @csrf
+                            <input name="id" type="hidden" value="{{ $test->id }}">
                             <div class="shadow sm:overflow-hidden sm:rounded-md">
                                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                    <div>
-                                        <label for="about" class="block text-sm font-medium text-gray-700">Content</label>
-                                        <div class="mt-1">
-                                            <textarea id="about" name="about" rows="3"
-                                                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                      placeholder="# Header"></textarea>
-                                        </div>
-                                        <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+                                    <div class="mb-6">
+                                        <label class="block">
+                                            <span class="text-gray-700">Description</span>
+                                            <textarea id="markdown-editor" class="block w-full mt-1 rounded-md" name="body" rows="3">{!! $test->body !!}</textarea>
+                                        </label>
+                                        @error('description')
+                                        <div class="text-sm text-red-600">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
+                                @if(session()->has('success'))
+                                    <div>{{ session('success') }}</div>
+                                @endif
                                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                                     <button type="submit"
                                             class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -44,4 +53,13 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+        <script>
+            const easyMDE = new EasyMDE({
+                showIcons: ['strikethrough', 'code', 'table', 'redo', 'heading', 'undo', 'heading-bigger', 'heading-smaller', 'heading-1', 'heading-2', 'heading-3', 'clean-block', 'horizontal-rule'],
+                element: document.getElementById('markdown-editor')});
+        </script>
+    @endpush
 </x-app-layout>

@@ -7,6 +7,9 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Styles -->
+        @stack('styles')
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -37,5 +40,6 @@
         @stack('modals')
 
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>
