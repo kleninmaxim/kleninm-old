@@ -15,7 +15,7 @@
                     <p class="mt-2 text-sm text-gray-700">A list of all Portfolios.</p>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <a href="{{ route('portfolio.create') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add portfolio</a>
+                    <a href="{{ route('admin.portfolio.create') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add portfolio</a>
                 </div>
             </div>
             <div class="mt-8 flex flex-col">
@@ -33,27 +33,27 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                @foreach($portfolios as $portfolio)
-                                    <tr>
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0">
-                                                    <img class="h-10 w-10 rounded-full" src="{{ asset('storage/' . $portfolio->thumbnail) }}" alt="">
+                                    @foreach($portfolios as $portfolio)
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                        <img class="h-10 w-10 rounded-full" src="{{asset('storage/' . $portfolio->thumbnail)}}" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            <div class="text-gray-900">{{$portfolio->title}}</div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            <div class="text-gray-900">{{$portfolio->description}}</div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$portfolio->slug}}</td>
-                                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Title</span></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <div class="text-gray-900">{{$portfolio->title}}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <div class="text-gray-900">{{Str::limit($portfolio->description, 50)}}</div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$portfolio->slug}}</td>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                <a href="{{route('admin.portfolio.edit', ['portfolio' => $portfolio->id])}}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Title</span></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

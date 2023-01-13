@@ -12,7 +12,7 @@
                 April, 2021
             </div>
             <div class="prose prose-zinc dark:prose-invert max-w-none">
-                {!! \Illuminate\Support\Str::markdown($test->body) !!}
+                {!! Str::markdown($portfolio->body) !!}
                 <h1>JSON API Error Responses in Laravel with Httpable Exceptions</h1>
                 <div class="p-4 rounded-md bg-red-500/10 text-red-800 dark:text-white">
                     Just a heads-up this article is over 12 months old and <em>might</em> be out of date!

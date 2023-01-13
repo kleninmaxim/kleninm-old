@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\PortfolioController;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use App\Http\Controllers\Admin\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/portfolio', function () {
-    return view('portfolio');
-});
+Route::get('/portfolio', [\App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/portfolio/{portfolio:slug}', [\App\Http\Controllers\PortfolioController::class, 'show'])->name('portfolio.show');
 
 Route::get('/about', function () {
     return view('about');
@@ -33,10 +31,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             return view('dashboard');
         })->name('dashboard');
 
-        Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-        Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
-        Route::post('/portfolio/create', [PortfolioController::class, 'store'])->name('portfolio.create');
-        Route::get('/portfolio/{portfolio:id}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
+        Route::get('/portfolio', [PortfolioController::class, 'index'])->name('admin.portfolio');
+        Route::get('/portfolio/create', [PortfolioController::class, 'create']);
+        Route::post('/portfolio/create', [PortfolioController::class, 'store'])->name('admin.portfolio.create');
+        Route::get('/portfolio/update/{portfolio:id}', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
+        Route::post('/portfolio/update/{portfolio:id}', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
 
 //        Route::get('/portfolio', function () {
 //            return view('dashboard.portfolio', ['test' => \App\Models\Test::first()]);
