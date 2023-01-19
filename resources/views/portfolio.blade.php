@@ -2,7 +2,7 @@
     <main class="flex-1 flex flex-col">
         <div class="max-w-2xl w-full py-12 px-4 mx-auto">
             <div class="prose prose-zinc dark:prose-invert max-w-none">
-                <h1>Roadmap of my experience</h1>
+                <h1>My projects and experience</h1>
             </div>
 
             @foreach($portfolios as $portfolio)
