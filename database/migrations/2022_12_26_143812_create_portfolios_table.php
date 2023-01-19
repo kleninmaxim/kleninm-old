@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description', 511);
             $table->text('body');
             $table->string('slug')->unique();
+            $table->string('link')->nullable();
             $table->string('thumbnail');
             $table->timestamps();
         });
