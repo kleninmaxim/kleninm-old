@@ -11,7 +11,7 @@ class PortfolioController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        return view('portfolio', ['portfolios' => Portfolio::query()->select('title', 'slug', 'description', 'thumbnail')->orderByDesc('created_at')->get()]);
+        return view('portfolio', ['portfolios' => Portfolio::query()->select('title', 'slug', 'description', 'link', 'thumbnail')->orderByDesc('created_at')->get()]);
     }
 
     public function show(Portfolio $portfolio): Factory|View|Application
