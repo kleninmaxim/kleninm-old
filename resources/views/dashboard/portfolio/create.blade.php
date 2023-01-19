@@ -45,7 +45,18 @@
                                             <input type="text" name="slug" id="slug" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="example-post" value="{{ old('slug') }}">
                                         </div>
                                         @error('slug')
-                                            <div class="text-sm text-red-600">{{ $message }}</div>
+                                        <div class="text-sm text-red-600">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="space-y-6 bg-white px-4 py-5 sm:p-6 grid grid-cols-3 gap-6">
+                                    <div class="col-span-3 sm:col-span-2">
+                                        <label for="link" class="block text-sm font-medium text-gray-700">Link</label>
+                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" name="link" id="link" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="https://kleninm.site/portfolio/" value="{{ old('link') }}">
+                                        </div>
+                                        @error('link')
+                                        <div class="text-sm text-red-600">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>

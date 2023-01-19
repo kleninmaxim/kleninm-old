@@ -52,11 +52,11 @@ class PortfolioController extends Controller
     {
         $portfolio ??= new Portfolio();
         return request()->validate([
-            'title' => 'required|min:2|max:50',
-            'description' => 'required|min:2|max:511',
-            'body' => 'required|min:2',
-            'slug' => ['required|min:2|max:100', Rule::unique('portfolios', 'slug')->ignore($portfolio)],
-            'link' => 'max:255',
+            'title' => ['required', 'min:2', 'max:50'],
+            'description' => ['required', 'min:2', 'max:511'],
+            'body' => ['required', 'min:2', 'max:511'],
+            'slug' => ['required', 'min:2', 'max:100', Rule::unique('portfolios', 'slug')->ignore($portfolio)],
+            'link' => ['max:255'],
             'thumbnail' => $portfolio->exists ? ['image', 'max:5096'] : ['required', 'image', 'max:5096']
         ]);
     }
