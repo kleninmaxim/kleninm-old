@@ -30,6 +30,7 @@
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Url</th>
                                         <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Edit</span></th>
+                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Delete</span></th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
@@ -50,7 +51,15 @@
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$portfolio->slug}}</td>
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="{{route('admin.portfolio.edit', ['portfolio' => $portfolio->id])}}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Title</span></a>
+                                                <a href="{{route('admin.portfolio.edit', ['portfolio' => $portfolio->id])}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            </td>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                {{--<a href="{{route('admin.portfolio.delete', ['portfolio' => $portfolio->id])}}" class="text-red-600 hover:text-indigo-900">Delete</a>--}}
+                                                <form action="{{route('admin.portfolio.delete', ['portfolio' => $portfolio->id])}}" method="POST" id="createPostForm">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="text-red-600 hover:text-indigo2-900">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -19,7 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/portfolio', [\App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
-Route::get('/portfolio/{portfolio:slug}', [\App\Http\Controllers\PortfolioController::class, 'show'])->name('portfolio.show');
+
+// Route::get('/portfolio/{portfolio:slug}', [\App\Http\Controllers\PortfolioController::class, 'show'])->name('portfolio.show');
 
 Route::get('/about', function () {
     return view('about');
@@ -31,11 +32,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             return view('dashboard');
         })->name('dashboard');
 
-        Route::get('/portfolio', [PortfolioController::class, 'index'])->name('admin.portfolio');
-        Route::get('/portfolio/create', [PortfolioController::class, 'create']);
-        Route::post('/portfolio/create', [PortfolioController::class, 'store'])->name('admin.portfolio.create');
-        Route::get('/portfolio/update/{portfolio:id}', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
-        Route::post('/portfolio/update/{portfolio:id}', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
+        Route::prefix('portfolio')->group(function () {
+            Route::get('/', [PortfolioController::class, 'index'])->name('admin.portfolio');
+            Route::get('/create', [PortfolioController::class, 'create']);
+            Route::post('/create', [PortfolioController::class, 'store'])->name('admin.portfolio.create');
+            Route::get('/update/{portfolio:id}', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
+            Route::post('/update/{portfolio:id}', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
+            Route::delete('/delete/{portfolio:id}', [\App\Http\Controllers\PortfolioController::class, 'delete'])->name('admin.portfolio.delete');
+        });
 
 //        Route::get('/portfolio', function () {
 //            return view('dashboard.portfolio', ['test' => \App\Models\Test::first()]);
