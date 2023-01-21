@@ -108,4 +108,5 @@ return [
 
     'password_timeout' => 10800,
 
+    'admin_email' => env('ADMIN_EMAIL')
 ];
