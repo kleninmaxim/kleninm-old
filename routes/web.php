@@ -46,19 +46,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::get('/', [ArchiveController::class, 'index'])->name('admin.archive');
             Route::post('/restore', [ArchiveController::class, 'restore'])->name('admin.archive.restore');
         });
-
-//        Route::get('/portfolio', function () {
-//            return view('dashboard.portfolio', ['test' => \App\Models\Test::first()]);
-//        })->name('portfolio');
-
-
-//        Route::get('portfolio', [PostController::class, 'show']);
-
-//        Route::post('/portfolio/update', function (\Illuminate\Http\Request $request) {
-//            $portfolio = \App\Models\Test::where('id', $request['id']);
-//            $portfolio->update(['body' => $request['body']]);
-//
-//            return redirect()->back()->with('success', 'Saved!');
-//        })->name('portfolio.update');
     });
 });
