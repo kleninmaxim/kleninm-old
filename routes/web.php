@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::get('/update/{portfolio:id}', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
             Route::post('/update/{portfolio:id}', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
             Route::delete('/delete/{portfolio:id}', [\App\Http\Controllers\PortfolioController::class, 'delete'])->name('admin.portfolio.delete');
+        });
+
+        Route::prefix('archive')->group(function () {
+            Route::get('/', [ArchiveController::class, 'index'])->name('admin.archive');
+            Route::post('/restore', [ArchiveController::class, 'restore'])->name('admin.archive.restore');
         });
 
 //        Route::get('/portfolio', function () {
