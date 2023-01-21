@@ -39,7 +39,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::post('/create', [PortfolioController::class, 'store'])->name('admin.portfolio.create');
             Route::get('/update/{portfolio:id}', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
             Route::post('/update/{portfolio:id}', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
-            Route::delete('/delete/{portfolio:id}', [\App\Http\Controllers\PortfolioController::class, 'delete'])->name('admin.portfolio.delete');
+            Route::delete('/delete/{portfolio:id}', [PortfolioController::class, 'delete'])->name('admin.portfolio.delete');
         });
 
         Route::prefix('archive')->group(function () {

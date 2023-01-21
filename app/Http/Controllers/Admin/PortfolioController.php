@@ -48,6 +48,12 @@ class PortfolioController extends Controller
         return back()->with('success', 'Post Updated!');
     }
 
+    public function delete(Portfolio $portfolio): RedirectResponse
+    {
+        $portfolio->delete();
+        return redirect()->back();
+    }
+
     protected function validatePost(?Portfolio $portfolio = null): array
     {
         $portfolio ??= new Portfolio();
