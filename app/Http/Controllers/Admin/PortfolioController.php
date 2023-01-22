@@ -38,10 +38,13 @@ class PortfolioController extends Controller
     public function update(Portfolio $portfolio): RedirectResponse
     {
         $attributes = $this->validatePost($portfolio);
+
         if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('portfolios', ['disk' => 'public']);
         }
+
         $portfolio->update($attributes);
+
         return back()->with('success', 'Post Updated!');
     }
 
