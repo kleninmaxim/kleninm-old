@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
@@ -22,10 +23,12 @@ class PasswordConfirmationTest extends TestCase
 
     public function test_password_can_be_confirmed()
     {
+        $this->withoutMiddleware([VerifyCsrfToken::class]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('/user/confirm-password', [
-            'password' => 'password',
+            'password' => 'testtest',
         ]);
 
         $response->assertRedirect();
@@ -34,6 +37,8 @@ class PasswordConfirmationTest extends TestCase
 
     public function test_password_is_not_confirmed_with_invalid_password()
     {
+        $this->withoutMiddleware([VerifyCsrfToken::class]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('/user/confirm-password', [
