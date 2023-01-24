@@ -15,9 +15,15 @@ php artisan key:generate
 php artisan storage:link
 ```
 ```shell
+npm install
+```
+```shell
 npm run build
 ```
 ```shell
 php artisan migrate --seed
+```
+```shell
+php artisan serve
 ```
 * Make Log In on website and change password `testtest` on your
