@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\PortfolioController;
-use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
 
 /*
