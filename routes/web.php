@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\PortfolioController;
-use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/portfolio', [\App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
+Route::controller(\App\Http\Controllers\PortfolioController::class)->group(function () {
+    Route::get('/portfolio', 'index')->name('portfolio');
+});
 
 // Route::get('/portfolio/{portfolio:slug}', [\App\Http\Controllers\PortfolioController::class, 'show'])->name('portfolio.show');
 

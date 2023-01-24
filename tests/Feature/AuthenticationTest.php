@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,11 +21,13 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen()
     {
+        $this->withoutMiddleware([VerifyCsrfToken::class]);
+
         $user = User::factory()->create();
 
         $response = $this->post('/login', [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => 'testtest',
         ]);
 
         $this->assertAuthenticated();
@@ -33,6 +36,8 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_not_authenticate_with_invalid_password()
     {
+        $this->withoutMiddleware([VerifyCsrfToken::class]);
+
         $user = User::factory()->create();
 
         $this->post('/login', [
